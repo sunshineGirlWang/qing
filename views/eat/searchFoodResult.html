@@ -1,0 +1,42 @@
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>
+                <input type="checkbox" name="randomCheckAll" checked />
+            </th>
+            <th>序号</th>
+            <th>分类</th>
+            <th>饭菜名</th>
+            <th>描述</th>
+        </tr>
+    </thead>
+    <tbody>
+        <%if(dataArray && dataArray.length){
+            function switchType(type){
+                var typeName = "";
+                switch(type){
+                    case 1: typeName = "面食";break;
+                    case 2: typeName = "快餐便当";break;
+                    case 3: typeName = "炒菜";break;
+                    case 4: typeName = "小吃";break;
+                    case 5: typeName = "甜点";break;
+                    case 6: typeName = "其它";break;
+                }
+                return typeName;
+            }
+        for(var d=0;d < dataArray.length;d++){
+            var data = dataArray[d];
+            var index = d+1;
+            var name = switchType(data.type);%>
+            <tr index="<%=index%>">
+                <td>
+                    <input type="checkbox" name="randomCheck" checked />
+                </td>
+                <td><%=index%></td>
+                <td><%=name%></td>
+                <td name="food"><%=data.food||''%></td>
+                <td><%=data.detail||''%></td>
+            </tr>
+        <%}}%>
+    </tbody>
+</table>
